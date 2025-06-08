@@ -1,4 +1,3 @@
-import "./style.css";
 import { header } from "./components";
 document.querySelector("#app").innerHTML = `
   <div>
