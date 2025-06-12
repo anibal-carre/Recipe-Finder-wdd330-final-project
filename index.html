@@ -9,9 +9,150 @@
       Recipe Finder - Find Recipes with Your Ingredients | By Anibal David
       Carreño Alvarez
     </title>
-    <script type="module" src="./src/main.js"></script>
+    <script defer src="./src/main.js"></script>
   </head>
   <body>
-    <div id="app"></div>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-utensils"></i>
+            Recipe Finder
+          </div>
+          <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="showFavorites()">
+              <i class="fas fa-heart"></i>
+              Favorites
+            </button>
+            <button class="btn btn-primary" onclick="generateRandomRecipe()">
+              <i class="fas fa-random"></i>
+              Random Recipe
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="main-content">
+        <aside class="filters-section">
+          <h3 class="filters-title">
+            <i class="fas fa-filter"></i>
+            Filters
+          </h3>
+
+          <div class="filter-group">
+            <label class="filter-label">Meal Type</label>
+            <select class="filter-select" id="mealType">
+              <option value="">Any</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snack">Snack</option>
+              <option value="dessert">Dessert</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Diet</label>
+            <select class="filter-select" id="diet">
+              <option value="">Any</option>
+              <option value="vegetarian">Vegetarian</option>
+              <option value="vegan">Vegan</option>
+              <option value="gluten free">Gluten Free</option>
+              <option value="ketogenic">Keto</option>
+              <option value="paleo">Paleo</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label class="filter-label">Intolerances</label>
+            <div class="filter-checkboxes">
+              <div class="checkbox-item">
+                <input type="checkbox" id="dairy" value="dairy" />
+                <label for="dairy">Dairy</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="egg" value="egg" />
+                <label for="egg">Egg</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="gluten" value="gluten" />
+                <label for="gluten">Gluten</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="peanut" value="peanut" />
+                <label for="peanut">Peanut</label>
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="btn btn-primary"
+            onclick="applyFilters()"
+            style="width: 100%; margin-top: 1rem"
+          >
+            Apply Filters
+          </button>
+        </aside>
+
+        <main>
+          <section class="search-section">
+            <h2 class="search-title">What ingredients do you have?</h2>
+            <form class="search-form" onsubmit="addIngredient(event)">
+              <input
+                type="text"
+                class="search-input"
+                id="ingredientInput"
+                placeholder="Enter an ingredient (e.g., chicken, tomatoes, rice)"
+                required
+              />
+              <button type="submit" class="search-btn">
+                <i class="fas fa-plus"></i>
+                Add
+              </button>
+            </form>
+
+            <div class="ingredients-display" id="ingredientsDisplay"></div>
+
+            <button
+              class="btn btn-primary"
+              onclick="searchRecipes()"
+              id="searchRecipesBtn"
+              style="width: 100%; margin-top: 1rem"
+              disabled
+            >
+              <i class="fas fa-search"></i>
+              Find Recipes
+            </button>
+          </section>
+
+          <section class="results-section">
+            <div class="results-header">
+              <h2 class="results-title">Recipe Results</h2>
+              <span id="resultsCount"></span>
+            </div>
+
+            <div id="recipesContainer">
+              <div class="empty-state">
+                <i class="fas fa-search"></i>
+                <h3>Ready to find amazing recipes?</h3>
+                <p>
+                  Add some ingredients above and click "Find Recipes" to get
+                  started!
+                </p>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal" id="recipeModal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div id="recipeDetailContent"></div>
+      </div>
+    </div>
   </body>
 </html>
