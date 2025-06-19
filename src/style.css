@@ -62,6 +62,11 @@ h6 {
   gap: 0.5rem;
 }
 
+.logo-image {
+  width: 60px;
+  border-radius: 50%;
+}
+
 .nav-buttons {
   display: flex;
   gap: 1rem;
